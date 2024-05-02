@@ -1,0 +1,40 @@
+version: '3.8'
+
+networks:
+  mynetwork:
+
+volumes:
+  mysql_data:
+
+services:
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:15.0.1
+    container_name: KEY_CLOCK_FAST_TEST
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: admin
+      DB_PASSWORD: admin
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - 3030:8080
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+
+  mysql:
+    image: mysql:5.7
+    container_name: MY_MYSQL
+    volumes:
+      - ./mysql_data/:/var/lib/mysql/
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    networks:
+      - mynetwork
