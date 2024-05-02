@@ -1,4 +1,3 @@
-
 # Reference:
   https://rchaussetech.medium.com/docker-nodejs-keycloak-protegendo-sua-api-fe8a2d436b36
 
