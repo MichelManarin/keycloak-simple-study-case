@@ -9,12 +9,20 @@ import realm-export.sjon into your keycloak
 http://localhost:3030/auth/realms/TenantTeste/protocol/openid-connect/token
 
 secret:
-9cd81fd3-e077-4018-8adb-a2288ff5ebc9
+  <Get Secret inside admin keycloak>
 
-curl -X POST 'http://localhost:3030/auth/realms/TenantTeste/protocol/openid-connect/token' \
- --header 'Content-Type: application/x-www-form-urlencoded' \
- --data-urlencode 'grant_type=password' \
- --data-urlencode 'client_id=backend-teste' \
- --data-urlencode 'client_secret=9cd81fd3-e077-4018-8adb-a2288ff5ebc9' \
- --data-urlencode 'username=user' \
- --data-urlencode 'password=161211'
+
+curl --location 'http://localhost:3030/auth/realms/TenantTeste/protocol/openid-connect/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: connect.sid=s%3AFiBM3DJEsitOP0fCZUubmuhKfeDx1OFt.kJ9MJeS%2FlMKRKFizfOZxNyk9F3SmXk6WsKKWbup8Y8c' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'client_id=backend-teste' \
+--data-urlencode 'client_secret=<Get Secret inside admin keycloak>' \
+--data-urlencode 'username=any_user' \
+--data-urlencode 'password=any_password'
+
+curl --location 'http://localhost:3000/test/admin' \
+--header 'Authorization: Bearer ...
+
+curl --location 'http://localhost:3000/test/user' \
+--header 'Authorization: Bearer ...
